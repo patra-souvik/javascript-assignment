@@ -29,6 +29,8 @@ function updateImage(){
     console.log(selected.firstChild);
     let bigImage = document.querySelector(".bigImage");
     bigImage.setAttribute("src", selected.firstChild.getAttribute("src"));
+    let input = document.querySelector("input");
+    input.value = selected.firstChild.nextSibling.innerHTML;
 }
 
 for(let i = 0; i < data.length; i++){
@@ -60,7 +62,21 @@ let bigImage = document.createElement("img");
 bigImage.classList.add("bigImage");
 let imageAndList = document.createElement("div");
 imageAndList.append(list);
-imageAndList.append(bigImage);
+let input = document.createElement("input");
+
+input.addEventListener("keydown",function(event){
+    if(event.key == "Enter"){
+        let selectedItem = document.querySelector(".selected");
+        selectedItem.firstChild.nextSibling.innerHTML = this.value;
+    }
+});
+
+
+let imageAndInput = document.createElement("div");
+imageAndInput.append(bigImage);
+imageAndInput.append(input);
+imageAndInput.classList.add("imageAndInput");
+imageAndList.append(imageAndInput);
 console.log(imageAndList);
 imageAndList.classList.add("imageAndList");
 body.append(imageAndList);

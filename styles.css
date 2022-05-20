@@ -25,7 +25,16 @@ img{
     border-radius: 0.5%;
 }
 
+.imageandInput{
+    display: flex;
+    flex-direction: row;
+}
+
 .imageAndList{
     display: flex;
     flex-direction: row;
+}
+
+input{
+    
 }
