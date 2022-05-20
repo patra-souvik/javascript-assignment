@@ -32,10 +32,40 @@ for(let i = 0; i < data.length; i++){
     div.append(a);
     div.append(p);
     div.classList.add("list-row");
+    if(i == 0){
+        div.classList.add("selected");
+    }
+    div.addEventListener("click", function(){
+        let prevselected = document.querySelector(".selected");
+        console.log(prevselected); 
+        prevselected.classList.toggle("selected");
+        this.classList.toggle("selected");
+    });
+    div.setAttribute("id", i);
     list.append(div);
-
 }
+
 list.classList.add("list");
 const body = document.querySelector("body");
 console.log(body);
 body.append(list);
+
+document.addEventListener("keydown", function(event){
+    console.log(event);
+    if(event.key == "ArrowUp"){
+        let prevselected = document.querySelector(".selected");
+        let newselected = prevselected.previousSibling;
+        if(newselected != undefined){
+            prevselected.classList.toggle("selected");
+            newselected.classList.toggle("selected");
+        }
+    }
+    else if(event.key == "ArrowDown"){
+        let prevselected = document.querySelector(".selected");
+        let newselected = prevselected.nextSibling;
+        if(newselected != undefined){
+            prevselected.classList.toggle("selected");
+            newselected.classList.toggle("selected");
+        }
+    }
+});
