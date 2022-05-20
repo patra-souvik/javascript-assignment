@@ -18,3 +18,14 @@ img{
     background-color: blue;
     color: white;
 }
+
+.bigImage{
+    width: 50rem;
+    height: 50rem;
+    border-radius: 0.5%;
+}
+
+.imageAndList{
+    display: flex;
+    flex-direction: row;
+}

@@ -23,6 +23,14 @@ const data = [
 console.log(data);
 const list = document.createElement("div");
 console.log(list);
+
+function updateImage(){
+    let selected = document.querySelector(".selected");
+    console.log(selected.firstChild);
+    let bigImage = document.querySelector(".bigImage");
+    bigImage.setAttribute("src", selected.firstChild.getAttribute("src"));
+}
+
 for(let i = 0; i < data.length; i++){
     const div = document.createElement("div");
     const p = document.createElement("p");
@@ -40,6 +48,7 @@ for(let i = 0; i < data.length; i++){
         console.log(prevselected); 
         prevselected.classList.toggle("selected");
         this.classList.toggle("selected");
+        updateImage();
     });
     div.setAttribute("id", i);
     list.append(div);
@@ -47,8 +56,14 @@ for(let i = 0; i < data.length; i++){
 
 list.classList.add("list");
 const body = document.querySelector("body");
-console.log(body);
-body.append(list);
+let bigImage = document.createElement("img");
+bigImage.classList.add("bigImage");
+let imageAndList = document.createElement("div");
+imageAndList.append(list);
+imageAndList.append(bigImage);
+console.log(imageAndList);
+imageAndList.classList.add("imageAndList");
+body.append(imageAndList);
 
 document.addEventListener("keydown", function(event){
     console.log(event);
@@ -58,6 +73,7 @@ document.addEventListener("keydown", function(event){
         if(newselected != undefined){
             prevselected.classList.toggle("selected");
             newselected.classList.toggle("selected");
+            updateImage();
         }
     }
     else if(event.key == "ArrowDown"){
@@ -65,7 +81,10 @@ document.addEventListener("keydown", function(event){
         let newselected = prevselected.nextSibling;
         if(newselected != undefined){
             prevselected.classList.toggle("selected");
-            newselected.classList.toggle("selected");
+            newselected.classList.toggle("selected");;
+            updateImage()
         }
     }
 });
+
+updateImage();
