@@ -30,16 +30,35 @@ function updateImage(){
     let bigImage = document.querySelector(".bigImage");
     bigImage.setAttribute("src", selected.firstChild.getAttribute("src"));
     let input = document.querySelector("input");
-    input.value = selected.firstChild.nextSibling.innerHTML;
+    input.value = selected.firstChild.nextSibling.getAttribute("title");
+}
+
+function calText(str){
+    if(str.length <= 31)
+        return `${str}`;
+    else{
+        let ret = "";
+        for(let i = 0; i<15;i++){
+            ret += str[i];
+        }
+        ret+="...";
+        for(let i = str.length - 13; i<str.length;i++){
+            ret += str[i];
+        }
+        return `${ret}`;
+    }
 }
 
 for(let i = 0; i < data.length; i++){
     const div = document.createElement("div");
     const p = document.createElement("p");
     const a = document.createElement("img");
+    const abbr = document.createElement("abbr");
     a.setAttribute("src", data[i].previewImage);
-    p.innerHTML = `${data[i].title}`;
+    abbr.setAttribute("title", data[i].title);
+    p.innerHTML = calText(data[i].title);
     div.append(a);
+    div.append(abbr);
     div.append(p);
     div.classList.add("list-row");
     if(i == 0){
@@ -67,7 +86,9 @@ let input = document.createElement("input");
 input.addEventListener("keydown",function(event){
     if(event.key == "Enter"){
         let selectedItem = document.querySelector(".selected");
-        selectedItem.firstChild.nextSibling.innerHTML = this.value;
+        selectedItem.firstChild.nextSibling.setAttribute("title", this.value);
+        selectedItem.firstChild.nextSibling.nextSibling.innerHTML = calText(this.value);
+        // selectedItem.firstChild.nextSibling.nextSibling.innerHTML = this.value;
     }
 });
 
