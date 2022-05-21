@@ -3,6 +3,7 @@ img{
     height : 50px;
     border-radius: 20%;
     margin-right: 0.5rem;
+    object-fit: cover;
     /* padding-left: 0.5rem; */
     padding: 0.5rem;
 }
@@ -16,7 +17,7 @@ img{
 .list{
     display: flex;
     flex-direction: column;
-    flex: 0 0 300px;
+    /* flex: 0 0 300px; */
     margin: 15px;
     margin-top: 0px;
     overflow: hidden;
@@ -34,7 +35,8 @@ img{
     height: 800px;
     background-size: cover;
     border-radius: 1.5%;
-    flex-basis: 400px;
+    /* flex-basis: 400px; */
+    object-fit: cover;
 }
 
 .imageAndInput{
@@ -57,6 +59,7 @@ input{
     border-bottom-style: hidden;
     border-left-style : hidden;
     border-right-style : hidden;
+    font-size: 15px;
 }
 
 p{
