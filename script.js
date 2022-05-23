@@ -32,22 +32,56 @@ function updateImage(){
     let input = document.querySelector("input");
     input.value = selected.firstChild.nextSibling.getAttribute("title");
 }
+const body = document.querySelector("body");
+const span = document.createElement("span");
+body.append(span);
 
 function calText(str){
-    if(str.length <= 31)
+    span.innerHTML = str;
+    console.log(span.offsetWidth);
+    // if(str.length <= 31)
+    //     return `${str}`;
+    // else{
+    //     let ret = "";
+    //     for(let i = 0; i<15;i++){
+    //         ret += str[i];
+    //     }
+    //     ret+="...";
+    //     for(let i = str.length - 13; i<str.length;i++){
+    //         ret += str[i];
+    //     }
+    //     return `${ret}`;
+    // }
+
+    if(span.offsetWidth <= 212){
         return `${str}`;
+    }
     else{
-        let ret = "";
-        for(let i = 0; i<15;i++){
-            ret += str[i];
+        let len = str.length;
+        let firstHalf = str.slice(0,len/2);
+        let secondHalf = str.slice(len/2, len);
+        console.log("This is the first half ",firstHalf,"This is the second half ", secondHalf);
+        let printedString = firstHalf + "..." + secondHalf;
+        span.innerHTML = printedString;
+        let c = 1;
+        while(span.offsetWidth > 212){
+            if(c > 0){
+                firstHalf = firstHalf.slice(0, firstHalf.length-1);
+                printedString = firstHalf + "..." + secondHalf;
+                span.innerHTML = printedString
+            }
+            else{
+                secondHalf = secondHalf.slice(1, secondHalf.length);
+                printedString = firstHalf + "..." + secondHalf;
+                span.innerHTML = printedString;
+            }
+            c *= -1;
         }
-        ret+="...";
-        for(let i = str.length - 13; i<str.length;i++){
-            ret += str[i];
-        }
-        return `${ret}`;
+        return `${printedString}`;
     }
 }
+
+
 
 for(let i = 0; i < data.length; i++){
     const div = document.createElement("div");
@@ -76,7 +110,7 @@ for(let i = 0; i < data.length; i++){
 }
 
 list.classList.add("list");
-const body = document.querySelector("body");
+
 let bigImage = document.createElement("img");
 bigImage.classList.add("bigImage");
 let imageAndList = document.createElement("div");
@@ -101,6 +135,7 @@ imageAndList.append(imageAndInput);
 console.log(imageAndList);
 imageAndList.classList.add("imageAndList");
 body.append(imageAndList);
+
 
 document.addEventListener("keydown", function(event){
     console.log(event);

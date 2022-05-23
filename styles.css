@@ -68,3 +68,8 @@ p{
    overflow: hidden;
    text-overflow: clip ellipsis clip 0 7ch;
 }
+
+span{
+    visibility: hidden;
+    white-space: nowrap;
+}
