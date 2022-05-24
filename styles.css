@@ -73,3 +73,16 @@ span{
     visibility: hidden;
     white-space: nowrap;
 }
+
+@media (max-width: 1055px) {
+    .imageAndList{
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        align-items: center;
+    }
+    .bigImage{
+        width: 500px;
+        height: 600px;
+    }
+}
